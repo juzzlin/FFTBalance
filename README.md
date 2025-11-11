@@ -40,16 +40,28 @@ To build and run FFTBalance, you need the following libraries installed on your 
 After building, you can run the `fft_balance` executable from the `build` directory.
 
 ```bash
-./fft_balance <input_audio_file> <reference_audio_file> <output_audio_file>
+./fft_balance <input_audio_file> <reference_audio_file> <output_audio_file> [num_bands] [max_boost_db] [max_cut_db]
 ```
 
-**Example:**
+*   `<input_audio_file>`: The audio file to be processed.
+*   `<reference_audio_file>`: The audio file whose spectral balance will be used as a reference.
+*   `<output_audio_file>`: The path where the balanced audio file will be saved.
+*   `[num_bands]`: Optional. The number of frequency bands to use for analysis (default: 8, range: 2-30).
+*   `[max_boost_db]`: Optional. The maximum gain in dB that can be applied to a band (default: 3.0, must be non-negative).
+*   `[max_cut_db]`: Optional. The maximum cut in dB that can be applied to a band (default: 3.0, must be non-negative).
+
+**Examples:**
 
 ```bash
+# Basic usage with default settings
 ./fft_balance Input.wav Reference.wav Balanced.wav
-```
 
-This command will process `Input.wav` using `Reference.wav` as a spectral guide and save the result to `Balanced.wav`.
+# Using 16 frequency bands
+./fft_balance Input.wav Reference.wav Balanced_16_bands.wav 16
+
+# Using 10 frequency bands, with a max boost of 6 dB and max cut of 3 dB
+./fft_balance Input.wav Reference.wav Balanced_10_bands_6_3.wav 10 6.0 3.0
+```
 
 ```
 Loading input track: Input.wav...
