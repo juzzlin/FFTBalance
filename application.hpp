@@ -6,19 +6,21 @@
 class Application
 {
 public:
-    Application(int argc, char** argv);
+    Application(int argc, char ** argv);
+
     int run();
 
 private:
-    void print_usage();
+    void printUsage(const std::string applicationName) const;
 
-    std::string m_infile;
-    std::string m_reffile;
-    std::string m_outfile;
-    int m_num_bands;
-    double m_max_boost_db;
-    double m_max_cut_db;
-    bool m_valid_args;
+    std::string m_inFile;
+    std::string m_refFile;
+    std::string m_outFile;
+
+    int m_numBands;
+
+    double m_maxBoostDb;
+    double m_maxCutDb;
 };
 
 #endif // APPLICATION_HPP

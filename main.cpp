@@ -22,8 +22,22 @@
 
 #include "application.hpp"
 
-int main(int argc, char **argv)
+#include <cstdlib>
+#include <iostream>
+#include <stdexcept>
+
+int main(int argc, char ** argv)
 {
-    Application app(argc, argv);
-    return app.run();
+    try {
+        Application app { argc, argv };
+        return app.run();
+    } catch (const std::exception & e) {
+        std::cerr << std::endl
+                  << "Error: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    } catch (...) {
+        std::cerr << std::endl
+                  << "An unknown error occurred." << std::endl;
+        return EXIT_FAILURE;
+    }
 }
