@@ -21,8 +21,7 @@ To build and run FFTBalance, you need the following libraries installed on your 
 
 2.  **Create a build directory and navigate into it:**
     ```bash
-    mkdir build
-    cd build
+    mkdir build && cd build
     ```
 
 3.  **Run CMake to configure the project:**
