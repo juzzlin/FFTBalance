@@ -25,7 +25,7 @@ link_directories(
 )
 
 set(BINARY_NAME fft_balance) 
-add_executable(${BINARY_NAME} main.cpp)
+add_executable(${BINARY_NAME} main.cpp application.cpp fft_balance.cpp)
 target_link_libraries(${BINARY_NAME}
     ${SNDFILE_LIBRARIES}
     ${FFTW3_LIBRARIES}
