@@ -288,6 +288,29 @@ std::vector<Band> FFTBalance::generateBands(double samplerate, size_t bandCount)
         if (bandIndex == bandCount - 1) {
             high = endFreq;
         }
+
+        // Rounding logic for nice numbers
+        if (low < 100.0) {
+            low = std::round(low);
+        } else if (low < 1000.0) {
+            low = std::round(low / 10.0) * 10.0;
+        } else {
+            low = std::round(low / 100.0) * 100.0;
+        }
+
+        if (high < 100.0) {
+            high = std::round(high);
+        } else if (high < 1000.0) {
+            high = std::round(high / 10.0) * 10.0;
+        } else {
+            high = std::round(high / 100.0) * 100.0;
+        }
+
+        // Ensure high is always greater than low after rounding
+        if (high <= low) {
+            high = low + 1.0; // Smallest possible increment
+        }
+
         const double centerFreq { getBandCenterFrequency(low, high) };
         bands.push_back({ low, high, centerFreq });
         low = high;
